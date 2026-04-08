@@ -3,6 +3,12 @@ assets/uploads/
 assets/exports/
 assets/img/logos/
 assets/img/avatars/
+public/uploads/
+
+# Zip/archive files
+*.zip
+*.tar.gz
+*.rar
 
 # Keep directory structure
 !assets/uploads/.gitkeep

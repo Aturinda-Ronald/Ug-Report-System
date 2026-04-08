@@ -1,0 +1,39 @@
+# Uploaded files (user content)
+assets/uploads/
+assets/exports/
+assets/img/logos/
+assets/img/avatars/
+
+# Keep directory structure
+!assets/uploads/.gitkeep
+!assets/exports/.gitkeep
+!assets/img/logos/.gitkeep
+!assets/img/avatars/.gitkeep
+
+# PHP logs and cache
+*.log
+*.cache
+error_log
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# Composer
+vendor/
+composer.lock
+
+# Node
+node_modules/

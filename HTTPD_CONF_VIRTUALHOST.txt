@@ -1,0 +1,74 @@
+# =================================================================
+# VIRTUALHOST CONFIGURATION FOR httpd.conf
+# Add this to the END of your C:\xampp\apache\conf\httpd.conf file
+# =================================================================
+
+# Listen on port 8082 (add this line if not already present)
+Listen 8082
+
+# Uganda Results System VirtualHost Configuration
+<VirtualHost *:8082>
+    # Accept connections from any IP address
+    ServerName localhost
+    ServerAlias *
+
+    # Document root points to PUBLIC directory
+    DocumentRoot "C:/xampp/htdocs/reports_system/public"
+
+    # Main application directory
+    <Directory "C:/xampp/htdocs/reports_system/public">
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+
+        # Enable mod_rewrite for clean URLs
+        RewriteEngine On
+        RewriteCond %{REQUEST_FILENAME} !-f
+        RewriteCond %{REQUEST_FILENAME} !-d
+        RewriteRule ^(.*)$ index.php [QSA,L]
+    </Directory>
+
+    # Parent directory access (for PHP includes)
+    <Directory "C:/xampp/htdocs/reports_system">
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    # Assets directory for CSS, JS, images
+    Alias /assets "C:/xampp/htdocs/reports_system/assets"
+    <Directory "C:/xampp/htdocs/reports_system/assets">
+        Options -Indexes
+        AllowOverride None
+        Require all granted
+    </Directory>
+
+    # Security: Block access to sensitive directories
+    <Directory "C:/xampp/htdocs/reports_system/config">
+        Require all denied
+    </Directory>
+
+    <Directory "C:/xampp/htdocs/reports_system/database">
+        Require all denied
+    </Directory>
+
+    <Directory "C:/xampp/htdocs/reports_system/lib">
+        Require all denied
+    </Directory>
+
+    # Default index files
+    DirectoryIndex index.php index.html index.htm
+
+    # Logging (optional)
+    ErrorLog "logs/uganda-results-8082-error.log"
+    CustomLog "logs/uganda-results-8082-access.log" combined
+</VirtualHost>
+
+# =================================================================
+# NOTES:
+# - This configuration allows access from any IP address
+# - Port 8082 serves the system from the PUBLIC directory
+# - Assets (CSS, JS, images) are properly served
+# - Sensitive directories are blocked for security
+# - Clean URLs are enabled with mod_rewrite
+# =================================================================
